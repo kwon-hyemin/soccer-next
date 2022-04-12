@@ -19,3 +19,12 @@ export const createStore = () =>{
 export const wrapper = createWrapper(createStore, 
     {debug: process.env.NODE_ENV !== 'production' }
 )
+
+
+const initialState = {}
+export const todoSlice = createSlice({
+    name: 'todos',
+    initialState,
+    reducers: {}
+})
+export default todoSlice.reducer
