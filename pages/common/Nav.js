@@ -7,16 +7,18 @@ export default function Nav(){
             <ul>
                 <li className={styles.li}> <Link href='/'>Home</Link> </li>
                 <li className={styles.li}> <Link href='/basic/bmi'>Basic</Link> </li>
-                <li className={styles.li}> <Link href='/game/game-list'>Game List</Link> </li>
-                <li className={styles.li}> <Link href='/game/team-list'>Team List</Link> </li>
-                <li className={styles.li}> <Link href='/game/team-form'>Team Form</Link> </li>
-                <li className={styles.li}> <Link href='/todo/todo-list'>Todo</Link> </li>
-                <li className={styles.li}> <Link href='/admin/dashboard'>Dashboard</Link> </li>
-                <li className={styles.li}> <Link href='/board/board-list'>Board List</Link> </li>
-                <li className={styles.li}> <Link href='/board/board-form'>Board Form</Link> </li>
-                <li className={styles.li}> <Link href='/user/join'>JOIN</Link> </li>
-                <li className={styles.li}> <Link href='/user/login'>LOGIN</Link> </li>
-                <li className={styles.li}> <Link href='/user/user-list'>User list</Link> </li>
+                <li className={styles.li}> <Link href='/admin/dashboard'>대쉬 보드</Link> </li>
+                <li className={styles.li}> <Link href='/game/game-list'>게임 목록</Link> </li>
+                <li className={styles.li}> <Link href='/game/game-form'>게임 등록</Link> </li>
+                <li className={styles.li}> <Link href='/game/team-list'>팀 목록</Link> </li>
+                <li className={styles.li}> <Link href='/game/team-form'>팀 등록</Link> </li>
+                <li className={styles.li}> <Link href='/todo/todo-list'>스케줄 목록</Link> </li>
+                <li className={styles.li}> <Link href='/todo/todo'>스케줄 등록</Link> </li>
+                <li className={styles.li}> <Link href='/board/board-list'>게시글 목록</Link> </li>
+                <li className={styles.li}> <Link href='/board/board-form'>게시글 등록</Link> </li>
+                <li className={styles.li}> <Link href='/user/join'>회원가입</Link> </li>
+                <li className={styles.li}> <Link href='/user/login'>로그인</Link> </li>
+                <li className={styles.li}> <Link href='/user/user-list'>사용자 목록</Link> </li>
             </ul>
         </nav>
     </>)
