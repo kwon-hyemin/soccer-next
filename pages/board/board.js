@@ -1,36 +1,34 @@
 import React, {useState} from 'react'
-// import style from "board/style/board-form.module.css"
+import style from "./style/board-form.module.css"
 import { useDispatch } from 'react-redux'
-import { addTask } from '../../redux/reducers/board.reducer'
-
+import { addBoard } from '../../redux/reducers/boardReducer.ts'
 export default function Board(){
-    const [value, setValue] = useState('')
     const dispatch = useDispatch()
-    return (
-        <div className="boardapp stack-large">
+    const [inputs, setInputs] = useState({})
+
+    const handleChange = e => {
+       const {name, value} = e.target 
+       setInputs({...inputs, [name]: value})
+    }
+
+   
+    return (<>
         <h1>게시글 등록</h1>
-            <htmlForm onSubmit={ e => {
+        <div className={style.container}>
+            <form onSubmit={e => {
                 e.preventDefault()
-                alert('a')
-                if(value) dispatch(addTask({task: value}))
+                
+                if(inputs) dispatch(addBoard(inputs))
             }}>
             <div className={style.row}>
                 <div className={style.col25}>
+                <label className={style.label} htmlFor="passengerId">글 제목</label>
                 </div>
                 <div className={style.col75}>
-                <input type="text" 
-                className="input input__lg"
-                onChange={handleChange}
-                id="new-todo-input"
-                name="text"
-                autoComplete="off"
-                placeholder="게시글 작성자 ID 입력"/>
-                <button style={{marginLeft:"20px"}} type="submit" className="btn btn__primary btn__lg">
-          Add
-        </button>
+                <input type="text" className={style.inputText} onChange={handleChange}
+                id="title" name="title" placeholder="글 제목 입력"/>
                 </div>
             </div>
-            {/**
             <div className={style.row}>
                 <div className={style.col25}>
                 <label htmlFor="name">게시글 작성자 이름</label>
@@ -62,12 +60,12 @@ export default function Board(){
                 </div>
             </div>
             <br/>
-            */}
+            
             <div className={style.row}>
-                <input type="submit" className={style.inputSubmit} onClick={handleClick} 
+                <input type="submit" className={style.inputSubmit} 
                 value="Submit"/>
             </div>
-            </htmlForm>
+            </form>
             </div>
-    )
+    </>)
 }

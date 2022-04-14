@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from '../../redux/reducers/todo.reducer'
+import { addTask } from '../../redux/reducers/todoReducer'
 // import Image from "next/image";
 // import './style/Task.scss'
 export default function AddTodo() {

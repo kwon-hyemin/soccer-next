@@ -1,5 +1,5 @@
 import react from 'react';
-import tableStyles from "common/style/user-list.module.css"
+import tableStyles from "../common/style/user-list.module.css"
 import { useEffect, useState } from "react";
 import Head from "next/head";
 const Table = ({colspan, data}) => {

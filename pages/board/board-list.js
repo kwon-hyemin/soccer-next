@@ -1,4 +1,4 @@
-import boardStyles from "common/style/user-list.module.css"
+import boardStyles from "../common/style/user-list.module.css"
 import {useEffect, useState} from "react"
 import axios from "axios"
 
