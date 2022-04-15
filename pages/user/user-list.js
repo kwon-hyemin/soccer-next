@@ -1,49 +1,51 @@
-import tableStyles from "../common/style/user-list.module.css"
-import { useEffect,useState } from "react"
-import axios from "axios";
-
-const Table = ({columns, colspan, data}) => {
-
-  
-    return (
-        <table className={tableStyles.table}>
-            <thead>
-                <tr className={tableStyles.tr}>
-                    {columns.map((column) => (
-                        <th key={column} className={tableStyles.td}>{column}</th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                  { data.length == 0  ?<tr className={tableStyles.tr}>
-                                      <td colSpan={colspan} className={tableStyles.td}>데이터가 없습니다</td>
-                                      </tr>
-                :data.map((user) => (
-                <tr className={tableStyles.tr}  key={user.userId} >
-                  <td className={tableStyles.td}>{user.userId}</td>
-                  <td className={tableStyles.td}>{user.pw}</td>
-                  <td className={tableStyles.td}>{user.userName}</td>
-                  <td className={tableStyles.td}>{user.tel}</td>
-                </tr>
-                ))}
-            </tbody>
-        </table>
-    )
-}
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import tableStyles from '../common/style/table.module.css'
+import Link from 'next/link'
 
 export default function UserList(){
-    const columns = ["사용자ID", "이름", "이메일", "전화번호","생년월일","주소"]
+
+    const columns = ["사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"];
     const [data, setData] = useState([])
-    useEffect(()=> {
-      axios.get('http://localhost:5000/api/user/userlist').then(res => {
+    useEffect(()=>{
+      axios.get('http://localhost:5000/api/user/list').then(res=>{
         setData(res.data.users)
-      }).catch(err => {})
+      }).catch(err=>{})
     },[])
-    return(<>
-        <h1>사용자 목록</h1>
-        
-        <div className={tableStyles.td}>
-        <Table columns={columns} colspan={6} data = {data}/>
-        </div>
-    </>)
+    return (
+      <table className={tableStyles.table}>
+        <thead>
+            <tr>
+                <th colSpan={6}><h1>회원목록</h1></th>
+            </tr>
+            
+        </thead>
+        <tbody>
+              <tr>
+                  {columns.map((column, index) => (
+                        <td key={index} >{column}</td>
+                  ))}
+                </tr>
+                { data.length == 0  ?<tr >
+                                      <td colSpan={6} >데이터가 없습니다</td>
+                                      </tr>
+                :data.map((user) => (
+                <tr key={user.userid} >
+                  <td >
+                    <Link href={{pathname:`/user/[userid]`,
+                                query:{selectedUser: 'test'}}} as={`/user/${user.userid}`}>
+                      <a>{user.userid}</a>
+                    </Link>
+                  </td>
+                  <td >{user.name}</td>
+                  <td >{user.email}</td>
+                  <td >{user.phone}</td>
+                  <td >{user.birth}</td>
+                  <td >{user.address}</td>
+                </tr>
+            ))}
+            
+        </tbody>
+      </table>
+    );
 }

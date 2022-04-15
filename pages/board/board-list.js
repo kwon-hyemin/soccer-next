@@ -1,47 +1,39 @@
-import boardStyles from "../common/style/user-list.module.css"
-import {useEffect, useState} from "react"
+import Head from "next/head"
+import tableStyles from "../common/style/table.module.css"
+import { useEffect ,useState} from "react"
 import axios from "axios"
 
-const Board = ({columns, colspan, data}) => {
+export default function BoardList(){
+    const columns = ["글번호", "제목", "작성자", "주제"]
+    const [data, setData] = useState([])
+    useEffect(()=>{
+            axios.get('http://localhost:5000/api/board/list').then(res=>{
+                setData(res.data.boards)
+        }).catch(err=>{})
+    }, [])
     return(
-        <table className={boardStyles.board}>
+        <table className={tableStyles.table}>
             <thead>
-            <tr className={boardStyles.tr}>
-            {columns.map((column) => (
-                <th key={column} className={boardStyles.td}>{column}</th>
-            ))}
-            
-            </tr>
+                <tr><th colSpan={4}><h2>게시판</h2></th></tr>
             </thead>
             <tbody>
-                { data.length == 0  ?<tr className={boardStyles.tr}>
-                                <td colSpan={colspan} className={boardStyles.td}>데이터가 없습니다</td>
-                                </tr>
-                :data.map((user) => (
-                <tr className={boardStyles.tr}  key={user.passengerId} >
-                  <td className={boardStyles.td}>{user.passengerId}</td>
-                  <td className={boardStyles.td}>{user.teamId}</td>
-                  <td className={boardStyles.td}>{user.name}</td>
-                  <td className={boardStyles.td}>{user.subject}</td>
-                </tr>
+            <tr >
+                {columns.map((column) => (
+                <td key={column} >{column}</td>
                 ))}
+            </tr>
+                    {data.length == 0 ? <tr >
+                    <td colSpan={4} >게시글 없음</td>
+                    </tr>
+                    :data.map((board)=> (
+                        <tr key={board.passengerId}>
+                            <td >{board.passengerId}</td>
+                            <td >{board.name}</td>
+                            <td >{board.teamId}</td>
+                            <td >{board.subject}</td>
+                        </tr>
+                    ))}
             </tbody>
         </table>
     )
-}
-
-export default function BoardList(){
-    const columns = ["PassengerId","Name","Team","Subject"]
-    const [data, setData] = useState([])
-    useEffect(()=>{
-        axios.get('http://localhost:5000/api/board/boardlist').then(res => {
-            setData(res.data.boards)
-        }).catch(err => {})
-    },[])
-    return(<>
-        <h1>게시판 목록</h1>
-        <div className={boardStyles.td}>
-        <Board columns={columns} colspan={4} data = {data}/>
-        </div>
-        </>)
 }
