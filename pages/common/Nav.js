@@ -13,8 +13,10 @@ export default function Nav(){
     <li className={styles.li}> <Link href='/game/getGames'>게임목록</Link> </li>
     <li className={styles.li}> <Link href='/game/modifyGame'>게임수정</Link> </li>
     <li className={styles.li}> <Link href='/game/removeGame'>게임추가</Link> </li>
-    <li className={styles.li}> <Link href='/game/team-form'>팀추가</Link> </li>
-    <li className={styles.li}> <Link href='/game/team-list'>팀리스트</Link> </li>
+    <li className={styles.li}> <Link href='/game/teamArticles'>팀추가</Link> </li>
+    <li className={styles.li}> <Link href='/game/getTeams'>팀목록</Link> </li>
+    <li className={styles.li}> <Link href='/game/modifyTeam'>팀수정</Link> </li>
+    <li className={styles.li}> <Link href='/game/removeTeam'>팀삭제</Link> </li>
     <li className={styles.li}> <Link href='/todo/addTodo'>투두추가</Link> </li>
     <li className={styles.li}> <Link href='/todo/getTodos'>투두목록</Link> </li>
     <li className={styles.li}> <Link href='/todo/modifyTodo'>투두수정</Link> </li>
